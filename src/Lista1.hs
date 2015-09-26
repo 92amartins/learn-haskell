@@ -49,6 +49,9 @@ not' Nao = Sim
 l1 :: [Int]
 l1 = [11 ^ x | x<-[0..6]]
 
+l2 :: [Int]
+l2 = [y | y <- [1..40], mod y 4 /= 0]
+
 -- Exercício 1.3 
 {-
     Faça o tipo Temperatura que pode ter valores Celsius, Farenheit
@@ -118,7 +121,8 @@ l161 :: [String]
 l161 = ['A' : x : "BB" | x <- ['a'..'g']]
 
 -- 2. [5,8,11,17,20,26,29,32,38,41]
-
+l162 :: [Int]
+l162 = [x | x <- [ 5, 8 .. 41], x /= 14, x /= 23, x /= 35]
 
 -- 3. [1.0,0.5,0.25,0.125,0.0625,0.03125]
 l163 :: [Float]
