@@ -77,14 +77,31 @@ Exercício 2.5 Faça o tipo Cripto que possua dois value constructors Mensagem
 e Cifrado ambos com um campo String e um value constructor Erro. Faça as
 funções encriptar e decriptar seguindo cada exemplo a seguir
 
-    encriptar(Mensagem ”F AT EC”) = Cifrado ”GBU F D”
-    decriptar(Cifrado ”DBT B”) = Mensagem ”CASA”.
+    encriptar(Mensagem ”FATEC”) = Cifrado ”GBUFD”
+    decriptar(Cifrado ”DBTB”) = Mensagem ”CASA”.
     
 OBS: a encriptação deve empurrar cada letra a frente e a decriptação, faz o in-
 verso, empurrando uma letra para trás. Use as funções succ e pred e também list
 compreeshions. Não é possível encriptar mensagens cifradas e decriptar mensa-
 gens.
 -}
+data Cripto = Mensagem String |
+              Cifrado String |
+              Falha             -- Erro would conflict with the value constructor Erro declared on the previous exercise
+              deriving Show
+
+encriptar :: Cripto -> Cripto
+encriptar (Mensagem m) = Cifrado [succ c | c <- m]
+encriptar (Cifrado _) = Falha
+encriptar _ = Falha
+
+decriptar :: Cripto -> Cripto
+decriptar (Cifrado m) = Mensagem [pred c | c <- m]
+decriptar (Mensagem _) = Falha
+decriptar _ = Falha
+  
+
+
 
 {-
 Exercício 2.6 Faça uma função encriptarTodos que encripta (ou dá erro) todos
