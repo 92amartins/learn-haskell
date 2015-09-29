@@ -121,6 +121,38 @@ o dia por comentário).
 -}
 
 {-
+CÂMBIO
+DÓLAR COM
+R$ 4,11
+EURO
+R$ 4,626
+
+Fonte: uol.com.br acesso em: 28/09/2015 as 23:06
+-}
+
+data Cambio = Euro Double|
+              Real Double|
+              Dollar Double
+              deriving Show
+
+data Moeda = Moeda {val :: Double, cur :: Cambio}
+
+toReal :: Cambio -> Cambio
+toReal (Dollar d) = Real (d * 4.11)
+toReal (Euro e) = Real (e*4.626)
+toReal (Real r) = Real r
+
+toEuro :: Cambio -> Cambio
+toEuro (Dollar d) = Euro (d * 4.11/4.626)
+toEuro (Euro e) = Euro e
+toEuro (Real r) = Euro (r/4.626)
+
+toDollar :: Cambio -> Cambio
+toDollar (Dollar d) = Dollar d
+toDollar (Euro e) = Dollar (e*4.626/4.11)
+toDollar (Real r) = Dollar (r / 4.11)
+
+{-
 Exercício 2.8 Crie a função converterTodosReal que recebe uma lista de Moedas
 e retorna outra lista de Moedas com todos os seus elementos convertidos para Real.
 Use list compreenshion.
