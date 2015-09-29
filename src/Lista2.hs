@@ -54,3 +54,77 @@ isNomeValido' :: String -> Valido'
 isNomeValido' [] = Nao'
 isNomeValido' s = Sim' {nome = s}
 
+{-
+Exercício 2.4 Faça o tipo Numero, que possui um value constructor Ok com
+um campo double e outro value constructor Erro com um campo String. Faça a
+função dividir que divida dois números e caso o segundo número seja 0 emita um
+erro (use o pattern matching). Exemplo,
+    
+    dividir(Numero 6) (Numero 5) = N umero1.2.
+-}
+
+data Numero = OK Double |
+              Erro String
+              deriving Show
+
+dividir :: Numero -> Numero -> Numero
+dividir _ (OK 0.0) = Erro "Division by 0!"
+dividir (OK a) (OK b) = OK $ a/b
+dividir _ _ = Erro "Please provide two Numeros"
+
+{-
+Exercício 2.5 Faça o tipo Cripto que possua dois value constructors Mensagem
+e Cifrado ambos com um campo String e um value constructor Erro. Faça as
+funções encriptar e decriptar seguindo cada exemplo a seguir
+
+    encriptar(Mensagem ”F AT EC”) = Cifrado ”GBU F D”
+    decriptar(Cifrado ”DBT B”) = Mensagem ”CASA”.
+    
+OBS: a encriptação deve empurrar cada letra a frente e a decriptação, faz o in-
+verso, empurrando uma letra para trás. Use as funções succ e pred e também list
+compreeshions. Não é possível encriptar mensagens cifradas e decriptar mensa-
+gens.
+-}
+
+{-
+Exercício 2.6 Faça uma função encriptarTodos que encripta (ou dá erro) todos
+os elementos de um vetor de Cripto.
+-}
+
+{-
+Exercício 2.7 Tendo como base o exercício de conversão de medidas dado em
+aula, crie uma função que faça conversão de câmbio. Você deve criar o tipo Cam-
+bio contendo os value constructors Euro, Real e Dollar. Crie também o tipo Moeda
+que possui os campos (val :: Double) e (cur :: Cambio). Use re-
+cord syntax e as taxas de conversão do dia ao qual você fez o exercício (especifique
+o dia por comentário).
+-}
+
+{-
+Exercício 2.8 Crie a função converterTodosReal que recebe uma lista de Moedas
+e retorna outra lista de Moedas com todos os seus elementos convertidos para Real.
+Use list compreenshion.
+-}
+
+{-
+Exercício 2.9 Crie a função maxMoeda que recebe uma lista de Moedas e re-
+torna o valor máximo absoluto(sem conversão alguma) dentre os campos val
+desta lista. Exemplo,
+maxM oeda [Moeda 3 Real , Moeda 7 Dollar , Moeda 2 Euro] = 7.
+OBS: Use a função maximum.
+-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
