@@ -108,6 +108,9 @@ Exercício 2.6 Faça uma função encriptarTodos que encripta (ou dá erro) todo
 os elementos de um vetor de Cripto.
 -}
 
+encriptarTodos :: [Cripto] -> [Cripto]
+encriptarTodos = map encriptar 
+
 {-
 Exercício 2.7 Tendo como base o exercício de conversão de medidas dado em
 aula, crie uma função que faça conversão de câmbio. Você deve criar o tipo Cam-
