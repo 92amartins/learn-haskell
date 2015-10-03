@@ -159,6 +159,9 @@ e retorna outra lista de Moedas com todos os seus elementos convertidos para Rea
 Use list compreenshion.
 -}
 
+converterTodosReal :: [Moeda] -> [Moeda]
+converterTodosReal ms = [toReal m | m <- ms]  
+
 {-
 Exercício 2.9 Crie a função maxMoeda que recebe uma lista de Moedas e re-
 torna o valor máximo absoluto(sem conversão alguma) dentre os campos val
