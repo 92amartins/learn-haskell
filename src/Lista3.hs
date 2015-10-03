@@ -42,10 +42,16 @@ binList = map (\ b -> toInt' (aplicar Soma2 b Um))
 toInt' :: Binario -> Int
 toInt' Zero = 0
 toInt' Um = 1 
+
 {-
 Exercício 3.4 Faça uma função que receba um [String] e retorne todos ele-
 mentos palíndromos. Ver exercício 1.9.
 -}
+
+checkPal :: [String] -> [Bool]
+checkPal = map (\ str -> str == reverse str)
+
+
 -- Exercício 3.5 Refaça o exercício 2.8 usando map.
 
 {-
