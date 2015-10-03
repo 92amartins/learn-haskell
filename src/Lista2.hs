@@ -130,27 +130,28 @@ R$ 4,626
 Fonte: uol.com.br acesso em: 28/09/2015 as 23:06
 -}
 
-data Cambio = Euro Double|
-              Real Double|
-              Dollar Double
+data Cambio = Euro |
+              Real |
+              Dollar
               deriving Show
 
-data Moeda = Moeda {val :: Double, cur :: Cambio}
+data Moeda = Moeda {val :: Double, 
+                    cur :: Cambio} deriving (Show)
+                    
+toReal :: Moeda -> Moeda
+toReal (Moeda v Euro) = Moeda {val = 4.626*v, cur = Real}
+toReal (Moeda v Dollar) = Moeda {val = 4.11*v, cur = Real}
+toReal m = m
 
-toReal :: Cambio -> Cambio
-toReal (Dollar d) = Real (d * 4.11)
-toReal (Euro e) = Real (e*4.626)
-toReal (Real r) = Real r
+toDollar :: Moeda -> Moeda
+toDollar (Moeda v Euro) = Moeda {val = (4.626*v)/4.11, cur = Dollar}
+toDollar (Moeda v Real) = Moeda {val = v/4.11, cur = Dollar}
+toDollar m = m
 
-toEuro :: Cambio -> Cambio
-toEuro (Dollar d) = Euro (d * 4.11/4.626)
-toEuro (Euro e) = Euro e
-toEuro (Real r) = Euro (r/4.626)
-
-toDollar :: Cambio -> Cambio
-toDollar (Dollar d) = Dollar d
-toDollar (Euro e) = Dollar (e*4.626/4.11)
-toDollar (Real r) = Dollar (r / 4.11)
+toEuro :: Moeda -> Moeda
+toEuro (Moeda v Dollar) = Moeda {val = (4.11*v)/4.626, cur = Euro}
+toEuro (Moeda v Real) = Moeda {val = v/4.626, cur = Euro}
+toEuro m = m
 
 {-
 Exercício 2.8 Crie a função converterTodosReal que recebe uma lista de Moedas
