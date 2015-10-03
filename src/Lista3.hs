@@ -1,5 +1,6 @@
 module Lista3 where
 
+
 {-
 Exercício 3.1 Faça uma função que retorne a média de um [Double] usando
 foldl.
@@ -53,6 +54,21 @@ checkPal = map (\ str -> str == reverse str)
 
 
 -- Exercício 3.5 Refaça o exercício 2.8 usando map.
+data Cambio = Euro |
+              Real |
+              Dollar
+              deriving Show
+
+data Moeda = Moeda {val :: Double, 
+                    cur :: Cambio} deriving (Show)
+                    
+toReal :: Moeda -> Moeda
+toReal (Moeda v Euro) = Moeda {val = 4.626*v, cur = Real}
+toReal (Moeda v Dollar) = Moeda {val = 4.11*v, cur = Real}
+toReal m = m
+
+converterTodosReal :: [Moeda] -> [Moeda]
+converterTodosReal = map toReal
 
 {-
 Exercício 3.6 Usando o exercício 2.7 como base, faça uma função que retorna
